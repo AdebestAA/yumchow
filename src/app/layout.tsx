@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`font-grandstander bg-background`}
+        className={`font-poppins bg-background`}
       >
         {children}
       </body>
