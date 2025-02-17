@@ -14,16 +14,19 @@ export default {
         poppins: ["Poppins", "sans-serif"],
         quicksand: ["Quicksand", "sans-serif"],
         grandstander: ["Grandstander", "cursive"],
+        publicSans: ["Public Sans", "sans-serif"]
       },
       colors: {
         background: "#FFFFFF",
         primary:"#FF7F11",
         secondary:"#E63946",
         accent:"#FFC300",
+        slateGray:"#637381"
       },
       screens: {
         'xxs':'330px',  
         'xs':'400px',
+        "mds":"500px",
         'sm': '640px',
         'md': '768px',
         'lg': '900px',

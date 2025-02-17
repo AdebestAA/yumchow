@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 
-const textInputStyles = "border-[1px] h-[30px] focus:outline-primary rounded-sm w-full border-primary px-2 text-md "
+const textInputStyles = "border-[1px] mds:h-[40px] h-[35px] focus:outline-primary text-slateGray rounded-md w-full border-slateGray px-2 text-md "
 const containerForInput = "my-2"
 const SignUpForm = () => {
     const [formData,setFormData] = useState({
@@ -11,10 +11,10 @@ const SignUpForm = () => {
         image:""
     })
   return (
-    <div className=' h-screen flex justify-center flex-col w-full text-sm font-extralight sm:items-center'>
+    <div className=' h-screen flex justify-center flex-col w-full text-sm  mds:items-center'>
 
-<form action="" className='px-6 sm:w-2/5'>
-<h1 className='font-bold'>create account</h1>
+<form action="" className='px-6  mds:w-3/5 sm:w-2/5 lg:w-[25%]'>
+<h1 className='font-semibold'>create account</h1>
     {/* username */}
 <div className={containerForInput} >
 
@@ -53,7 +53,7 @@ className='hidden'
 </div>
 
 <div className='my-2'>
-    <button className='bg-primary text-background w-full py-[4px] rounded-md'>Submit</button>
+    <button className='bg-primary text-background w-full h-[40px] rounded-md'>Submit</button>
 </div>
 </form>
     </div>
