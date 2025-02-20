@@ -1,7 +1,7 @@
 "use server";
 
 import { v2 as cloudinary } from "cloudinary";
-// import { revalidatePath } from "next/cache";
+
 
 cloudinary.config({
   cloud_name: "ddojoiqku",
@@ -22,11 +22,10 @@ export async function uploadImage(formData: FormData) {
 
   try {
     const uploadResult = await cloudinary.uploader.upload(dataURI, {
-      folder: "uploads", // Change folder name if needed
+      folder: "uploads",
     });
 
-    // ✅ Revalidate path if you're displaying images on a page
-    // revalidatePath("/");
+  
 
     return {success:true, url: uploadResult.secure_url };
   } catch (error) {

@@ -1,4 +1,5 @@
 "use client"
+import Link from 'next/link'
 import React, { useState } from 'react'
 
 const textInputStyles = "border-[1px] mds:h-[40px] h-[35px] focus:outline-primary text-slateGray rounded-md w-full border-slateGray px-2 text-md"
@@ -37,6 +38,9 @@ className={textInputStyles}
 
 <div className='pt-4'>
     <button className='bg-primary text-background w-full h-[40px] rounded-md '>SignIn</button>
+</div>
+<div className='my-2'>
+    <p className='pl-2'>Dont have an account? sign up  <Link className='text-primary font-bold' href={"/signup"}>here</Link></p>
 </div>
 </form>
     </div>

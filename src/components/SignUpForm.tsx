@@ -1,22 +1,117 @@
 "use client"
 import { uploadImage } from '@/app/actions/uploadImage'
-import React, { useState } from 'react'
+import { registerUser } from '@/app/actions/userAuth'
+import { signUpType } from '@/utils/types'
+import React, { useEffect, useState } from 'react'
+import Modal from './modals/Modal'
+import { useDispatch, useSelector } from 'react-redux'
+import { appDispatch } from '@/store'
+import { RootState } from '@/store'
+import { openModal } from '@/store/slices/modalSlice'
+import { ButtonLoader } from './Loader'
+import Link from 'next/link'
+
 
 const textInputStyles = "border-[1px] mds:h-[40px] h-[35px] focus:outline-primary text-slateGray rounded-md w-full border-slateGray px-2 text-md "
 const containerForInput = "my-2"
 const SignUpForm = () => {
+    const dispatch = useDispatch<appDispatch>()
+    // const modalSlice = useSelector((state:RootState)=>{
+    //     return state.modalSlice
+    // })
     const [prev,setPrev] = useState("")
-    const [imageFile,setImageFile] = useState<FormData | null | File>(null)
-    const [formData,setFormData] = useState({
+    const [loading,setLoading] = useState<boolean>(false)
+    const [imageFile,setImageFile] = useState< null | File>(null)
+    const [formData,setFormData] = useState<signUpType>({
         username:"",
         email:"",
         password:"",
-        image:""
+        role:"user",
+        imageUrl:""
     })
+    const handleSubmit = async(e:React.SyntheticEvent)=>{
+        e.preventDefault()
+        if (loading) {
+            return
+        }
+        if (!formData.username || !formData.email || !formData.password) {
+            alert ("empty field")
+            return
+        }
+        setLoading(true)
+
+        const regUser = await registerUser(formData)
+        if (!regUser.success) {
+          dispatch(openModal({message:regUser.message,buttonText:"ok",showModal:true,redirectPage:null}))
+          setLoading(false)
+        }
+        else{
+            dispatch(openModal({message:regUser.message,buttonText:"Sign in",showModal:true,redirectPage:"/signin"}))
+            setLoading(false)
+        }
+        // signup without image
+            // if (!imageFile) {
+            // // alert("no image")
+            // const regUser = await registerUser(formData)
+            // if (!regUser.success) {
+            //   dispatch(openModal({message:regUser.message,buttonText:"ok",showModal:true,redirectPage:null}))
+            //   setLoading(false)
+            // }
+            // else{
+            //     dispatch(openModal({message:regUser.message,buttonText:"Sign in",showModal:true,redirectPage:"/signin"}))
+            //     setLoading(false)
+            // }
+
+            // console.log(regUser);  
+            // return
+            // }
+
+            // sign up with image
+
+            // const file = imageFile as File
+            // const imgFormData = new FormData();
+            // imgFormData.append("file", file);
+            // const result = await uploadImage(imgFormData);
+            // if (result.success) {
+            // console.log(result);
+            // const cloudImgUrl = result.url as string
+            // setFormData({...formData,imageUrl:cloudImgUrl})
+            // const regUser = await registerUser(formData)
+            // if (!regUser.success) {
+            //     dispatch(openModal({message:regUser.message,buttonText:"ok",showModal:true,redirectPage:null}))
+            //     setLoading(false)
+            //   }
+            //   else{
+            //     dispatch(openModal({message:regUser.message,buttonText:"Sign in",showModal:true,redirectPage:"/signin"}))
+            //     setLoading(false)
+            // }
+
+            // }
+            // else{
+            //     dispatch(openModal({message:"something went wrong with the image",buttonText:"ok",showModal:true,redirectPage:null}))
+            //     setLoading(false)
+            // }
+
+        //   const regUser = await registerUser(formData)
+        //   if (!regUser.success) {
+        //     dispatch(openModal(regUser.message))
+        //   }
+        //   console.log(regUser);  
+                }
+    
+useEffect(()=>{
+console.log(formData);
+
+},[formData])
+
+
+
+
+
   return (
     <div className=' h-screen flex justify-center flex-col w-full text-sm  mds:items-center'>
-
-<form action="" className='px-6  mds:w-3/5 sm:w-2/5 lg:w-[25%]'>
+        <Modal/>
+<form action="" onSubmit={handleSubmit} className='px-6  mds:w-3/5 sm:w-2/5 lg:w-[25%]'>
 <h1 className='font-semibold'>create account</h1>
     {/* username */}
 <div className={containerForInput} >
@@ -24,6 +119,8 @@ const SignUpForm = () => {
 <input 
 type="username"
 placeholder='username'
+name = "username"
+onChange={(e)=> setFormData({...formData,[e.target.name]:e.target.value})}
 className={textInputStyles}
 />
 </div>
@@ -33,6 +130,8 @@ className={textInputStyles}
 <input 
 type="email"
 placeholder='email'
+name = "email"
+onChange={(e)=> setFormData({...formData,[e.target.name]:e.target.value})}
 className={textInputStyles}
 />
 </div>
@@ -43,11 +142,13 @@ className={textInputStyles}
 <input
 placeholder='password' 
 type="password"
+name = "password"
+onChange={(e)=> setFormData({...formData,[e.target.name]:e.target.value})}
 className={textInputStyles}
 />
 </div>
 <div className={`${containerForInput} flex justify-between items-center`}>
-<label htmlFor="image" className=' '>choose an image</label>
+<label htmlFor="image" className=' bg-primary text-background py-[3px] px-[2px] rounded-sm cursor-pointer'>Image</label>
 <input 
 type="file"
 id='image'
@@ -57,6 +158,7 @@ console.log(e.target?.files?.[0])
 const file = e.target?.files?.[0] 
 setPrev(URL.createObjectURL(e.target?.files?.[0] as File))
 setImageFile(e.target?.files?.[0] as File)
+setFormData({...formData,imageUrl:e.target?.files?.[0] as File})
 
 
 }}
@@ -68,26 +170,15 @@ className='hidden'
 </div>
 
 <div className='my-2'>
-    <button type='button' 
+    <button type='submit' 
 //     onClick={async()=>{
-//         if (!imageFile) {
-//             alert("no image")
-//             return
-//         }
-//         const file = imageFile as File
-// const formData = new FormData();
-// formData.append("file", file);
-// const result = await uploadImage(formData);
-// if (result.success) {
-//     console.log(result);
-// }
-// else{
-//     console.log(result)
-// }
-        
+//        
 //     }
-//     }
-     className='bg-primary text-background w-full h-[40px] rounded-md'>Submit</button>
+     className='bg-primary text-background w-full h-[40px] rounded-md font-bold'>{loading ? <ButtonLoader/>  : "Submit"}</button>
+</div>
+
+<div className='my-2'>
+    <p className='pl-2'>Already have an account? sign in  <Link className='text-primary font-bold' href={"/signin"}>here</Link></p>
 </div>
 </form>
     </div>
