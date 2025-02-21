@@ -60,7 +60,7 @@ return
   return (
     <div className=' h-screen flex justify-center flex-col w-full text-sm mds:items-center'>
 <Modal/>
-<form action="" onSubmit={handleSubmit} className='px-6  mds:w-3/5 sm:w-2/5 lg:w-[25%]'>
+<form action="" onSubmit={handleSubmit} className='px-6  mds:w-3/5 sm:w-2/5 lg:w-[30%]'>
 <h1 className='font-semibold capitalize text-xl text-primary italic text-center'>Sign In</h1>
 
 <div className={containerForInput}>
@@ -89,10 +89,10 @@ className={textInputStyles}
 
 
 <div className='my-2'>
-    <button className='bg-primary text-background w-full h-[40px] rounded-xl font-bold'>{loading ? <ButtonLoader/>  : "Sign in"}</button>
+    <button className='bg-primary text-background w-full h-[40px] rounded-xl font-bold hover:bg-lightPrimary'>{loading ? <ButtonLoader/>  : "Sign in"}</button>
 </div>
 <div className='my-2'>
-    <p className='pl-2'>Dont have an account? sign up  <Link className='text-primary' href={"/signup"}>here</Link></p>
+    <p className='pl-2 italic'>Dont have an account? sign up  <Link className='text-primary italic' href={"/signup"}>here</Link></p>
 </div>
 </form>
     </div>

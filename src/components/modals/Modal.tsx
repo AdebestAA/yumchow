@@ -15,9 +15,9 @@ const router = useRouter()
     <>
     {modalSlice.showModal && <div className='fixed w-screen h-screen bg-[#6a696998] flex items-center justify-center '>
 
-        <section className='shadow-xl lg:w-[20%] sm:w-[35%] w-[70%] min-h-[150px] bg-background flex items-center justify-center flex-col rounded-xl px-6 py-2'>
-            <p className='text-center font-semibold sm:text-[1rem] text-[0.8rem]'>{modalSlice.message}</p>
-            <button className='hover:bg-lightPrimary bg-primary text-background w-full  sm:h-[40px] h-[30px] rounded-md my-4'  onClick={()=> 
+        <section className='shadow-xl lg:w-[30%] sm:w-[35%] w-[80%] min-h-[150px] bg-background flex items-center justify-center flex-col rounded-xl px-6 py-2'>
+            <p className='text-center  sm:text-[1rem] text-[0.8rem]'>{modalSlice.message}</p>
+            <button className='hover:bg-lightPrimary bg-primary text-background w-full font-semibold min-h-[30px] rounded-md rounded-xl my-2'  onClick={()=> 
           {
             if (modalSlice.redirectPage) {
               router.push(modalSlice.redirectPage)

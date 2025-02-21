@@ -111,7 +111,7 @@ console.log(formData);
   return (
     <div className=' h-screen flex justify-center flex-col w-full text-sm  mds:items-center'>
         <Modal/>
-<form action="" onSubmit={handleSubmit} className='px-6  mds:w-3/5 sm:w-2/5 lg:w-[25%]'>
+<form action="" onSubmit={handleSubmit} className='px-6  mds:w-3/5 sm:w-2/5 lg:w-[30%]'>
 <h1 className='font-semibold capitalize text-xl text-primary italic text-center'>create account</h1>
     {/* username */}
 <div className={containerForInput} >
@@ -148,7 +148,7 @@ className={textInputStyles}
 />
 </div>
 <div className={`${containerForInput} flex justify-between items-center`}>
-<label htmlFor="image" className=' bg-primary text-background py-[3px] px-[5px] rounded-md cursor-pointer'>upload image</label>
+<label htmlFor="image" className=' bg-primary text-background py-[3px] px-[5px] rounded-md cursor-pointer hover:bg-lightPrimary'>upload image</label>
 <input 
 type="file"
 id='image'
@@ -174,11 +174,11 @@ className='hidden'
 //     onClick={async()=>{
 //        
 //     }
-     className='bg-primary text-background w-full h-[40px] rounded-xl font-bold'>{loading ? <ButtonLoader/>  : "Submit"}</button>
+     className='bg-primary text-background w-full h-[40px] rounded-xl font-bold hover:bg-lightPrimary'>{loading ? <ButtonLoader/>  : "Submit"}</button>
 </div>
 
 <div className='my-2'>
-    <p className='pl-2'>Already have an account? sign in  <Link className='text-primary ' href={"/signin"}>here</Link></p>
+    <p className='pl-2 italic'>Already have an account? sign in  <Link className='text-primary italic' href={"/signin"}>here</Link></p>
 </div>
 </form>
     </div>
