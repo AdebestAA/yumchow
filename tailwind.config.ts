@@ -18,7 +18,8 @@ export default {
       },
       colors: {
         background: "#FFFFFF",
-        primary:"#FF7F11",
+        primary:"#FC6203",
+        lightPrimary:"#FF7F11",
         secondary:"#E63946",
         accent:"#FFC300",
         slateGray:"#637381"
