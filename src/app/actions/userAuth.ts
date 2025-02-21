@@ -2,9 +2,12 @@
 
 import { connectToDB } from "@/database"
 import User from "@/models/signUpModel"
-import { signUpReturnType, signUpType } from "@/utils/types"
+import { signInUserType, signUpReturnType, signUpType } from "@/utils/types"
 import bcrypt from "bcryptjs"
 import { uploadImage } from "./uploadImage"
+import jwt, { JwtPayload }  from "jsonwebtoken"
+import { cookies } from "next/headers"
+
 
 export const registerUser = async(formData:signUpType):Promise<signUpReturnType>=>{
 await connectToDB()
@@ -97,5 +100,106 @@ try {
     
     return {message:"something went wrong, please try again",success:false,data:null}
 }
+
+}
+
+
+export const signInUser = async (formData:signInUserType):Promise<signUpReturnType>=>{
+await connectToDB()
+        const {email,password} = formData
+try {
+    // check if user exist in the database
+    const checkUserExist = await User.findOne({email})
+    if (!checkUserExist) {
+        return {
+        message:"no user with this email",
+        success:false,
+        data: null
+        }
+    }
+// compre password 
+const comparePassword = await bcrypt.compare(password,checkUserExist.password)
+
+if (!comparePassword) {
+    return {
+        message:"password incorrect, kindly try again",
+        success:false,
+        data:null
+    }
+}
+
+// create token
+const createdToken = {
+    id:checkUserExist._id,
+    username:checkUserExist.username,
+    email:checkUserExist.email,
+
+}
+
+const token = jwt.sign(createdToken,"DEFAULT_VALUE",{expiresIn:"1d"})
+const getCookies = await cookies()
+getCookies.set("token",token)
+
+return {
+    message:"account successfully logged in",
+    success:true,
+    data:JSON.parse(JSON.stringify(checkUserExist))
+}
+
+} catch (error) {
+    return {
+        message:"something went wrong",
+        success:false,
+        data:null 
+     }
+}
+
+
+
+}
+
+
+export const fetchAuthUserDetails = async ()=>{
+ 
+    await connectToDB()
+    try {
+        const getCookies = await cookies()
+        const token = getCookies.get("token")?.value || ""
+        if (!token) {
+            return {
+                message:"token doesn't exist",
+                success:false,
+                data:null
+            }
+        }
+        // decode the token
+        const decodedToken = jwt.verify(token,"DEFAULT_VALUE") as JwtPayload
+        // check if user still exist in the database
+        const checkUserExist = await User.findOne({_id:decodedToken.id})
+        if (checkUserExist) {
+            return {
+                message:"user exist",
+                success:true,
+                data:JSON.parse(JSON.stringify(checkUserExist))
+            }
+        }
+        else{
+            return {
+                message:"couldn't get user data",
+                success:false,
+                data:null
+            }
+        }
+
+
+
+
+    } catch (error) {
+        return {
+            message:"cant get user details",
+            success:false,
+            data:null
+        }
+    }
 
 }

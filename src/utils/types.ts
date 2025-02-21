@@ -11,3 +11,8 @@ export interface signUpReturnType {
     success:boolean,
     data:signUpType | null
 }
+
+export interface signInUserType {
+    email:string,
+    password:string
+}

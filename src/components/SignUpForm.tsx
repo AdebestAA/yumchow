@@ -120,7 +120,7 @@ console.log(formData);
 type="username"
 placeholder='username'
 name = "username"
-onChange={(e)=> setFormData({...formData,[e.target.name]:e.target.value})}
+onChange={(e:React.ChangeEvent<HTMLInputElement>)=> setFormData({...formData,[e.target.name]:e.target.value})}
 className={textInputStyles}
 />
 </div>
@@ -131,7 +131,7 @@ className={textInputStyles}
 type="email"
 placeholder='email'
 name = "email"
-onChange={(e)=> setFormData({...formData,[e.target.name]:e.target.value})}
+onChange={(e:React.ChangeEvent<HTMLInputElement>)=> setFormData({...formData,[e.target.name]:e.target.value})}
 className={textInputStyles}
 />
 </div>
@@ -143,12 +143,12 @@ className={textInputStyles}
 placeholder='password' 
 type="password"
 name = "password"
-onChange={(e)=> setFormData({...formData,[e.target.name]:e.target.value})}
+onChange={(e:React.ChangeEvent<HTMLInputElement>)=> setFormData({...formData,[e.target.name]:e.target.value})}
 className={textInputStyles}
 />
 </div>
 <div className={`${containerForInput} flex justify-between items-center`}>
-<label htmlFor="image" className=' bg-primary text-background py-[3px] px-[2px] rounded-sm cursor-pointer'>Image</label>
+<label htmlFor="image" className=' bg-primary text-background py-[3px] px-[2px] rounded-sm cursor-pointer'>upload image</label>
 <input 
 type="file"
 id='image'
