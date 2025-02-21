@@ -16,6 +16,7 @@ export default async function Home() {
   <img src="yumChow.png"/>
   <br />
   <br />
+  <span className="w-5 h-5 border-2 border-[red] border-t-transparent rounded-full animate-spin"></span>
   <br />
   <h1>welcome back {userAuth.success && userAuth.data.username}</h1>
   <Link href={"/signup"}>Sign up</Link>

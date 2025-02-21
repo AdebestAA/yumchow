@@ -12,7 +12,7 @@ import { ButtonLoader } from './Loader'
 import Link from 'next/link'
 
 
-const textInputStyles = "border-[1px] mds:h-[40px] h-[35px] focus:outline-primary text-slateGray rounded-md w-full border-slateGray px-2 text-md "
+const textInputStyles = "bg-lightGray border-[1px] mds:h-[40px] h-[35px] focus:outline-primary rounded-md w-full  px-2 text-md "
 const containerForInput = "my-2"
 const SignUpForm = () => {
     const dispatch = useDispatch<appDispatch>()
@@ -112,7 +112,7 @@ console.log(formData);
     <div className=' h-screen flex justify-center flex-col w-full text-sm  mds:items-center'>
         <Modal/>
 <form action="" onSubmit={handleSubmit} className='px-6  mds:w-3/5 sm:w-2/5 lg:w-[25%]'>
-<h1 className='font-semibold'>create account</h1>
+<h1 className='font-semibold capitalize text-xl text-primary italic text-center'>create account</h1>
     {/* username */}
 <div className={containerForInput} >
 
@@ -148,7 +148,7 @@ className={textInputStyles}
 />
 </div>
 <div className={`${containerForInput} flex justify-between items-center`}>
-<label htmlFor="image" className=' bg-primary text-background py-[3px] px-[2px] rounded-sm cursor-pointer'>upload image</label>
+<label htmlFor="image" className=' bg-primary text-background py-[3px] px-[5px] rounded-md cursor-pointer'>upload image</label>
 <input 
 type="file"
 id='image'
@@ -174,11 +174,11 @@ className='hidden'
 //     onClick={async()=>{
 //        
 //     }
-     className='bg-primary text-background w-full h-[40px] rounded-md font-bold'>{loading ? <ButtonLoader/>  : "Submit"}</button>
+     className='bg-primary text-background w-full h-[40px] rounded-xl font-bold'>{loading ? <ButtonLoader/>  : "Submit"}</button>
 </div>
 
 <div className='my-2'>
-    <p className='pl-2'>Already have an account? sign in  <Link className='text-primary font-bold' href={"/signin"}>here</Link></p>
+    <p className='pl-2'>Already have an account? sign in  <Link className='text-primary ' href={"/signin"}>here</Link></p>
 </div>
 </form>
     </div>

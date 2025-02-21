@@ -22,7 +22,8 @@ export default {
         lightPrimary:"#FF7F11",
         secondary:"#E63946",
         accent:"#FFC300",
-        slateGray:"#637381"
+        slateGray:"#637381",
+        lightGray:"#e3e0e0"
       },
       screens: {
         'xxs':'330px',  
