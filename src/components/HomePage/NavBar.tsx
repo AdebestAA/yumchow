@@ -19,7 +19,7 @@ console.log(openModal)
   return (
     <nav className="flex justify-between text-[0.7rem] sm:text-[0.8rem] pt-2" >
   
-        <figure className=" w-[100px] max-w-1/5 h-full">
+        <figure className="rounded-md border-[1px] border-primary w-[100px] max-w-1/5 h-full">
         <img src="yumChow.png" className="object-cover"/>
         </figure>
 <section className="hidden sm:flex justify-between xl:w-[25%] lg:w-[30%] md:w-[35%] w-[40%] items-center">
@@ -32,9 +32,9 @@ console.log(openModal)
 <section className="hidden sm:flex justify-between items-center w-[28%] lg:w-[20%] xl:w-[18%] 2xl:w-[15%]  ">
 <button><IoCartOutline  className="text-[1.2rem] hover:text-primary transition durtaion-200"/></button>
   <Link href={"/signin"} className="border-primary border-[1px] rounded-md text-primary px-[4px] py-[2px] hover:bg-primary hover:text-background">Login</Link>
-  <Link href={"/signup"} className="hover bg-primary text-background border-primary rounded-md border-[1px] px-4 py-[4px] hover:text-primary hover:bg-background hover:border-primary hover:rounded-md  ">Register</Link>
+  <Link href={"/signup"} className="hover bg-primary text-background border-primary rounded-md border-[1px] px-4 py-[4px] hover:text-primary hover:bg-background   ">Register</Link>
 </section>
-        <button onClick={()=> setOpenModal(!openModal)} className="sm:hidden inline h-[25px] w-[25px] flex cursor-pointer justify-center items-center bg-primary rounded-[5px] transition duration-300"> <FaBars className="text-white  text-[1rem]" /></button>
+        <button onClick={()=> setOpenModal(!openModal)} className="scale-up-and-down sm:hidden inline h-[30px] w-[30px] flex cursor-pointer justify-center items-center bg-primary rounded-[5px] transition duration-300 hover:border-secondary hover:border-2"> <FaBars className="text-white  text-[1rem]" /></button>
 
 <div className={`fixed pt-8 w-[30%] right-0  h-screen bg-primary top-0 transition-transform duration-[1s] ease-in-out ${openModal ? "translate-x-0" :"translate-x-[500%]"} `}>
        <SlideMenu/>
