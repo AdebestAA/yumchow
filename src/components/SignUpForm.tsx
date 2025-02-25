@@ -10,6 +10,7 @@ import { RootState } from '@/store'
 import { openModal } from '@/store/slices/modalSlice'
 import { ButtonLoader } from './Loader'
 import Link from 'next/link'
+import CSSLoader from './loader/CSSLoader'
 
 
 const textInputStyles = "bg-lightGray border-[1px] mds:h-[40px] h-[35px] focus:outline-primary rounded-md w-full  px-2 text-md "
@@ -111,7 +112,7 @@ console.log(formData);
   return (
     <div className=' h-screen flex justify-center flex-col w-full text-sm  mds:items-center'>
         <Modal/>
-<form action="" onSubmit={handleSubmit} className='px-6  mds:w-3/5 sm:w-2/5 lg:w-[30%]'>
+<form action="" onSubmit={handleSubmit} className='px-6  mds:w-3/5 sm:w-[50%] lg:w-[35%]'>
 <h1 className='font-semibold capitalize text-xl text-primary italic text-center'>create account</h1>
     {/* username */}
 <div className={containerForInput} >
@@ -174,7 +175,7 @@ className='hidden'
 //     onClick={async()=>{
 //        
 //     }
-     className='bg-primary text-background w-full h-[40px] rounded-xl font-bold hover:bg-lightPrimary'>{loading ? <ButtonLoader/>  : "Submit"}</button>
+     className='bg-primary transition duration-[1s] text-background w-full h-[40px] rounded-xl font-bold hover:bg-lightPrimary transition duration-300 '>{loading ? <CSSLoader/>  : "Submit"}</button>
 </div>
 
 <div className='my-2'>

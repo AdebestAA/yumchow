@@ -16,3 +16,9 @@ export interface signInUserType {
     email:string,
     password:string
 }
+
+export type menuLinktype =     {
+    id:number,
+    name:string,
+    path:string
+}

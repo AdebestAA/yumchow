@@ -138,7 +138,13 @@ const createdToken = {
 
 const token = jwt.sign(createdToken,"DEFAULT_VALUE",{expiresIn:"1d"})
 const getCookies = await cookies()
-getCookies.set("token",token)
+getCookies.set("token",token,{
+    path: "/",
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    maxAge: 3600
+  })
 
 return {
     message:"account successfully logged in",
