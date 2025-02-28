@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import modalReducer from "./slices/modalSlice";
+import homeMenuReducer from "./slices/homeMenuSlice";
 
 
 const store = configureStore ( {
   reducer: {
-    modalSlice:modalReducer
+    modalSlice:modalReducer,
+    homeMenuSlice:homeMenuReducer
   }
 })
 

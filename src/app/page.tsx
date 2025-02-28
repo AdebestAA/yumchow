@@ -5,6 +5,7 @@ import { fetchAuthUserDetails } from "./actions/userAuth";
 import CSSLoader from "@/components/loader/CSSLoader";
 import NavBar from "@/components/HomePage/NavBar";
 import { Bar } from "@/utils/Icons";
+import MenuList from "@/components/HomePage/MenuList";
 
 export default async function Home() {
   const userAuth = await fetchAuthUserDetails()
@@ -25,7 +26,7 @@ if (!userAuth.success) {
     // </>
     <div className="px-4">
       <NavBar/>
-      
+      <MenuList/>
   <h1 className="">player</h1>
   <img src="yumChow.png"/>
   <br />
