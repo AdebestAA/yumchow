@@ -17,8 +17,14 @@ export interface signInUserType {
     password:string
 }
 
-export type menuLinktype =     {
+export interface menuLinktype   {
     id:number,
     name:string,
     path:string
+}
+
+export interface typeSlideImages {
+    id:number,
+    src:string,
+    name:string 
 }
