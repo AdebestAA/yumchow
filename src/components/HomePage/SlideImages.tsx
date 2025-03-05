@@ -1,6 +1,7 @@
 "use client"
 import { imagesForSlide } from '@/utils/SlideImages'
 import React, { useEffect, useState } from 'react'
+import Image from 'next/image'
 
 const SlideImages = () => {
     const [translateValue,setTranslateValue]  = useState<number>(0)
@@ -35,14 +36,14 @@ return ()=> clearInterval(intervalId)
         {imagesForSlide.map((item,index)=>{
             
             return <figure className='h-full min-w-full transition-[transform] duration-[0.5s] ease-in-out'  key={item.id} style={{transform:`translateX(${translateValue}00%)`}}>
-                <img className='w-full h-full object-cover' src={item.src} alt={item.name} />
+                <Image className='w-full h-full object-cover' fill src={item.src} alt={item.name} />
             </figure>
         })}
     </div>
         <div className=' h-8 w-full flex items-center  justify-center'>{
             imagesForSlide.map((_,index)=>{
 
-                return <div className={`transition-[width] duration-500 ease-in-out h-[10px]  rounded-md mx-2 ${translateValue == index || String(translateValue).includes(String(index))? "bg-slateGray w-[20px]"  :"bg-lightGray w-[10px]"} `} key={index}></div>
+                return <div className={`transition-[width] duration-500 ease-in-out sm:h-[10px] h-[5px] rounded-md mx-2 ${translateValue == index || String(translateValue).includes(String(index))? "bg-slateGray w-[20px]"  :"bg-lightGray sm:w-[10px] w-[5px]"} `} key={index}></div>
             })
             }</div>
         </>

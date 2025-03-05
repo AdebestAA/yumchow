@@ -12,14 +12,14 @@ export default async function Home() {
   const userAuth = await fetchAuthUserDetails()
   console.log(userAuth);
   
-if (!userAuth.success) {
-  return (
-<div className="text-center text-primary">
-  {userAuth.message}
-</div>
+// if (!userAuth.success) {
+//   return (
+// <div className="text-center text-primary">
+//   {userAuth.message}
+// </div>
 
-  )
-}
+//   )
+// }
 
   return (
     // <>

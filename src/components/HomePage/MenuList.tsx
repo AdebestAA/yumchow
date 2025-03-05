@@ -36,8 +36,8 @@ if (menuListContainer.current) {
 
 },[menuListState])
 
-    return <div ref={menuListContainer}  className={`bg-primary sm:hidden overflow-y-hidden`}>
-        <div  className={`w-full py-4 ${!contentLoaded ? "h-0" : ""}`}>
+    return <div ref={menuListContainer}  className={`bg-primary sm:hidden overflow-y-hidden h-0`} >
+        <div  className={`w-full py-4 `}>
 
         {menuLinks.map((item:menuLinktype,_)=>{
             
